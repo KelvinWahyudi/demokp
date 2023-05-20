@@ -22,7 +22,7 @@
 @endif
 <div class="form-group mt-5">
     <label for="kode">Kode Produk</label>
-    <input type="text" name="product_id" id="product_id" placeholder="Masukkan Kode Produk" class="form-control" value="{{ $produk->product_id}}">
+    <input type="text" name="id" id="id" placeholder="Masukkan Kode Produk" class="form-control" value="{{ $produk->id}}">
     @error('kode')
         <div class="text-danger"> {{ $message }}</div>
     @enderror

@@ -46,7 +46,7 @@
         @foreach($produk as $key => $item)
         <tr>
             <td>{{ ++$key }}</td>
-            <td>{{ $item->product_id }}</td>
+            <td>{{ $item->id }}</td>
             <td>{{ $item->nama }}</td>
             <td>{{ $item->product_detail }}</td>
             <td>
@@ -92,9 +92,9 @@
     </style>
   <footer class="footer">
       <div class="links">
-        <a href="#home">Home</a>
-        <a href="#menu">Produk</a>
-        <a href="#about">Tentang Kami</a>
+        <a href="/home">Home</a>
+        <a href="/menu">Produk</a>
+        <a href="/about">Tentang Kami</a>
       </div>
   
       <div class="credit">

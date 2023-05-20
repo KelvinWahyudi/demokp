@@ -18,7 +18,7 @@ class DetailPembelian extends Migration
             $table->unsignedBigInteger("kdTransaksi")->nullable();
             $table->foreign("kdTransaksi")->references("id")->on("transaksi");
             $table->char("Product_id")->nullable();
-            $table->foreign("Product_id")->references("product_id")->on("produk");
+            $table->foreign("id")->references("id")->on("produk");
             $table->integer("purchase_amount")->nullable();
             $table->timestamps();
         });

@@ -9,6 +9,7 @@ class produk extends Model
 {
     use HasFactory;
     protected $table = "produk";
+    protected $primaryKey = 'id';
 
     public function category()
     {

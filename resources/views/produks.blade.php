@@ -56,16 +56,19 @@
                             </p>
                             <!-- Product stok-->
                             Stok : {{ $item->stok }}
+                            <p>
+                                Deskripsi : {{ $item->product_detail}}
+                            </p>
                         </div>
                     </div>
                     <!-- Product actions-->
-                    {{-- <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                         <div class="text-center">
-                            <a class="btn btn-outline-dark mt-auto btn-sm" href="{{ route('add.to.cart', $item->product_id) }}">
+                            <a class="btn btn-outline-dark mt-auto btn-sm" href="{{ route('add.to.cart', $item->id) }}" >
                                 <i class="fa-solid fa-cart-shopping"></i> Pesan
                             </a>
                         </div>
-                    </div> --}}
+                    </div>
                 </div>
             </div>
             @endforeach

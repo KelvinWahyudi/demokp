@@ -17,8 +17,8 @@
     @csrf
     <div class="form-group mt-5">
         <label for="kode">Kode Produk</label>
-        <input type="text" name="product_id" id="product_id" placeholder="Masukkan Kode Produk" class="form-control" value="{{ old('product_id')}}">
-        @error('product_id')
+        <input type="text" name="id" id="id" placeholder="Masukkan Kode Produk" class="form-control" value="{{ old('id')}}">
+        @error('d')
             <div class="text-danger"> {{ $message }}</div>
         @enderror
     </div>

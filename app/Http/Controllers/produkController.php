@@ -45,7 +45,7 @@ class produkController extends Controller
 
         $produk = new produk();
         $produk->nama = $request->nama;
-        $produk->product_id = $request->product_id;
+        $produk->id = $request->id;
         $produk->product_detail = $request->product_detail;
         $produk->foto = $nama_file;
         $produk->harga = $request->harga;
@@ -89,7 +89,7 @@ class produkController extends Controller
 
         $produk = produk::find($id);
         // dd($produk);
-        $produk->product_id = $request->product_id;
+        $produk->id = $request->id;
         $produk->nama = $request->nama;
         $produk->product_detail = $request->product_detail;
         $produk->harga = $request->harga;
@@ -114,6 +114,7 @@ class produkController extends Controller
         if($produk){
             $produk->delete();
         }
+            
         $request->session()->flash("info", "Data produk $request->nama berhasil dihapus!");
         return redirect()->route("produk.index");
     }
@@ -201,11 +202,11 @@ class produkController extends Controller
             $detailpembelian = new detail_pembelian();
             $produk = produk::where('nama', $details['name'])->first();
             $produk->decrement('stok', $details['quantity']);
-            $kodeProduk = $produk->product_id;
-            $detail_pembelian->product_id = $product_id;
-            $detail_pembelian->kdTransaksi = $id2;
-            $detail_pembelian->jumlahPembelian = $details['quantity'];
-            $detail_pembelian->save();
+            $kodeProduk = $produk->id;
+            // $detail_pembelian->product_id = $product_id;
+            // $detail_pembelian->kdTransaksi = $id2;
+            // $detail_pembelian->jumlahPembelian = $details['quantity'];
+            // $detail_pembelian->save();
         }
 
         $request->session()->forget('cart');

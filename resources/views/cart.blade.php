@@ -8,7 +8,7 @@
         <table class="table">
             <thead>
             <tr>
-                <th style="width:50%">Coffee</th>
+                <th style="width:50%">Produk</th>
                 <th style="width:10%">Harga</th>
                 <th style="width:8%">Jumlah</th>
                 <th style="width:22%" class="text-center">Subtotal</th>
@@ -18,9 +18,9 @@
             <tbody>
                 @php $total = 0 @endphp
                 @if(session('cart'))
-                    @foreach(session('cart') as $id => $details)
+                    @foreach(session('cart') as $product_id => $details)
                         @php $total += $details['price'] * $details['quantity'] @endphp
-                        <tr data-id="{{ $id }}">
+                        <tr data-id="{{ $product_id }}">
                             <td data-th="Product">
                                 <div class="row">
                                     <div class="col-sm-3 hidden-xs"><img src="{{ $details['image'] }}" width="100" height="100" class="img-responsive"/></div>
