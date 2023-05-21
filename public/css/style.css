@@ -183,6 +183,7 @@ body {
 
 /* footer */
 footer {
+    position: bottom;
     background-color: var(--primary);
     text-align: center;
     padding: 1rem 0;

@@ -139,7 +139,7 @@ class produkController extends Controller
                 ["tanggal" => date("Y-m-d")]
             );
         }
-        return view('transaksi.index', compact("transaksi"));
+        return view('cart', compact("transaksi"));
     }
  
     public function addToCart($id)

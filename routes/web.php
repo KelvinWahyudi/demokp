@@ -49,7 +49,7 @@ Route::delete("/produk/delete/{id}", [produkController::class, "destroy"]);
 
 //keranjang
 Route::get('/tes', [produkController::class, 'tes']);
-Route::get('cart', [produkController::class, 'cart'])->name('cart');
+Route::get('cart', [produkController::class, 'cart'])->name('cart.index');
 Route::get('add-to-cart/{id}', [produkController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [produkController::class, 'updateCart'])->name('update.cart');
 Route::delete('remove-from-cart', [produkController::class, 'remove'])->name('remove.from.cart');
