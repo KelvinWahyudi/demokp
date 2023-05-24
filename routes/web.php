@@ -2,8 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\produkController;
+use App\Http\Controllers\customerController;
+use App\Http\Controllers\DetailPembelianController;
+use App\Http\Controllers\PaymentController;
 
-/*
+/*use App\Http\Controllers\DetailPembelianController;
+
 |--------------------------------------------------------------------------
 | Web Routes
 |--------------------------------------------------------------------------
@@ -26,6 +30,8 @@ Route::get('/about', function () {
 
 Route::get("/produks", [produkController::class, "produk"])->name("produk");
 
+// Route::get("/pembayaran", [PaymentController::class, "payment"])->name("payment");
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -36,6 +42,30 @@ Route::get('/register', function () {
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
+
+Route::get("/transaksi", function() {
+    return view('transaksi.index');
+});
+
+Route::get("/detailpembelian/{id}", [DetailPembelianController::class, "index"])->name('detailpembelian.index');
+
+// Route::post("/detailpembelian/store/{id}", [detail_pembelianController::class, "store"])->name("detailpembelian.store");
+
+// Route::get("/detailpembelian/{id}", [DetailPembelianController::class, "index"])->name('detailpembelian.index');
+
+// Route::post("/detailpembelian/store/{id}", [detail_pembelianController::class, "store"])->name("detailpembelian.store");
+
+
+Route::get('/payments/{id}', [PaymentController::class, 'index'])->name('detailpembelian.index');
+Route::get('/pembayaran', [PaymentController::class, 'pembayaran_index'])->name('pembayaran.index');
+
+// Route::get('/payments/create', [PaymentController::class, 'create'])->name('detailpembelian.create');
+Route::post('/payments/store/{id}', [PaymentController::class, 'store'])->name('detailpembelian.store');
+
+Route::post('payments/store/{id}', [PaymentController::class, 'store'])->name('detailpembelian.detail');
+Route::get('/payments/{id}', [PaymentController::class, 'show'])->name('detailpembelian.show');
+
+
 //kategory
 Route::get('/category/{category}', [produkController::class, 'indexByCategory'])->name('products.by.category');
 
@@ -46,6 +76,8 @@ Route::post("/produk/store", [produkController::class, "store"])->name("produk.s
 Route::get("/produk/edit/{id}", [produkController::class, "edit"])->name("produk.edit");
 Route::patch("/produk/update/{id}", [produkController::class, "update"])->name("produk.update");
 Route::delete("/produk/delete/{id}", [produkController::class, "destroy"]);
+Route::get('/detail/{id}', [produkController::class, "show"])->name('produk.show');
+
 
 //keranjang
 Route::get('/tes', [produkController::class, 'tes']);
@@ -53,6 +85,15 @@ Route::get('cart', [produkController::class, 'cart'])->name('cart.index');
 Route::get('add-to-cart/{id}', [produkController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [produkController::class, 'updateCart'])->name('update.cart');
 Route::delete('remove-from-cart', [produkController::class, 'remove'])->name('remove.from.cart');
+
+// Customer
+Route::get("/customer", [CustomerController::class, "index"])->name("customer.index");
+Route::get("/customer/create", [CustomerController::class, "create"])->name("customer.create");
+Route::post("/customer/store", [CustomerController::class, "store"])->name("customer.store");
+Route::get("/customer/edit/{id}", [CustomerController::class, "edit"])->name("customer.edit");
+Route::patch("/customer/update/{id}", [CustomerController::class, "update"])->name("customer.update");
+Route::delete("/customer/delete/{id}", [CustomerController::class, "destroy"]);
+
 
 
 require __DIR__.'/auth.php';

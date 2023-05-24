@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     
+    
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
 </head>
 
@@ -22,7 +23,7 @@
     <div class="container">
         @yield('container')
     </div>
-
+  
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
@@ -33,19 +34,31 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
+    
+
     @yield('scripts')
-    {{-- <footer class="footer mt-5 mb-5">
-        <div class="container">
-            <div class="links">
-                <a href="#home">Home</a>
-                <a href="#menu">Produk</a>
-                <a href="#about">Tentang Kami</a>
-            </div>
-            <div class="credit">
-                <p>Created by <span>CV LAWANG AGUNG SUKSES</span> | &copy; 2023</p>
-            </div>
-            </div>
-      </footer> --}}
+    <style>
+        .footer {
+          position: fixed;
+          left: 0;
+          bottom: 0;
+          width: 100%;
+          background-color: #161F72;
+          color: white;
+          text-align: center;
+        }
+        </style>
+      <footer class="footer">
+          <div class="links">
+            <a href="/home">Home</a>
+            <a href="/menu">Produk</a>
+            <a href="/about">Tentang Kami</a>
+          </div>
+      
+          <div class="credit">
+            <p>Created by <span>CV LAWANG AGUNG SUKSES</span> | &copy; 2023</p>
+          </div>
+        </footer>
 </body>
 
 </html>

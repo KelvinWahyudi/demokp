@@ -8,6 +8,7 @@ use App\Models\transaksi;
 use App\Models\customer;
 use App\Models\category;
 use App\Models\detail_pembelian;
+use App\Models\Payment;
 
 class produkController extends Controller
 {
@@ -57,10 +58,13 @@ class produkController extends Controller
         return redirect()->route("produk.index");
     }
 
-    public function show(Request $request, $id){
-        $produk = produk::find($id);
-        return view("produk.view", compact("produk"));
+    public function show(Request $request, $id)
+    {
+        $produk = produk::findOrFail($id);
+        return view("detail", compact("produk"));
     }
+    
+    
 
     public function edit(Request $request, $id){
         $this->authorize('update_produk', produk::class);
@@ -188,29 +192,32 @@ class produkController extends Controller
     public function tes(Request $request)
     {
         $themp = transaksi::latest('id')->first();
+        // dd($themp);
         $id2 = $themp->id;
         $themp->tanggal = date('Y-m-d');
         $themp->save();
 
         $transaksi = new transaksi();
+        $detail_pembelian = new detail_pembelian(); 
         $transaksi->id = $themp->id + 1;
         $transaksi->save();
 
         $total = 0;
-        foreach(session('cart') as $id => $details) {
+        foreach (session('cart') as $id => $details) {
             $total += $details['price'] * $details['quantity'];
-            $detailpembelian = new detail_pembelian();
-            $produk = produk::where('nama', $details['name'])->first();
+            $payment = new Payment();
+            $produk = Produk::where('nama', $details['name'])->first();
             $produk->decrement('stok', $details['quantity']);
             $kodeProduk = $produk->id;
-            // $detail_pembelian->product_id = $product_id;
-            // $detail_pembelian->kdTransaksi = $id2;
-            // $detail_pembelian->jumlahPembelian = $details['quantity'];
-            // $detail_pembelian->save();
+            $detail_pembelian->Product_id = $kodeProduk;
+            $detail_pembelian->kdTransaksi = $id2;
+            $detail_pembelian->purchase_amount = $total;
+            $detail_pembelian->save();
         }
 
         $request->session()->forget('cart');
+        return redirect()->route('detailpembelian.index', [$id2]);
 
-        return redirect()->route('detail_pembelian.index', [$id2]);
+        // return redirect()->route('detailpembelian.index',['id' => $id2]);
     }
 }

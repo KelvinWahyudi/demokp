@@ -13,17 +13,19 @@
     @extends('navbar.navbar')
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js" integrity="sha384-qKXV1j0HvMUeCBQ+QVp7JcfGl760yU08IQ+GpUo5hlbpg51QRiuqHAJz8+BrxE/N" crossorigin="anonymous"></script>
     
-@if (session()->has('info'))
+    @if (session()->has('info'))
     <div class="alert alert-success">
         {{ session()->get('info') }}
     </div>
-@endif
-<div class="position-relative">
-    <div class="position-absolute top-0 end-0 mt-5 py-2">
-        <a class="btn btn-dark position-relative" type="submit" href="{{ url('/cart') }}">
-            <i class="bi-cart-fill me-1"></i>
-            Cart 
-            <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"></span>
+    @endif
+    {{-- <h4 class="mb-8">Produk</h4> --}}
+    <div class="position-relative">
+        
+        <div class="position-absolute top-0 end-0 mt-5 py-2">
+            <a class="btn btn-dark position-relative" type="submit" href="{{ url('/cart') }}">
+                <i class="bi-cart-fill me-1"></i>
+                Cart 
+                <span class="position-absolute top-0 start-100 translate-middle badge border border-light rounded-circle bg-danger p-2"></span>
             <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
         </a>
     </div>
@@ -44,21 +46,23 @@
             <div class="col mb-3">
                 <div class="card" style="width: 18rem;">
                     <!-- Product image-->
-                    <img class="card-img-top" src="{{asset('storage/'. $item->foto)}}"src="{{asset('storage/'. $item->foto)}}" width="180" height="180"/>
+                    <img class="card-img-top" src="{{ asset('storage/'. $item->foto) }}" width="180" height="180"/>
                     <!-- Product details-->
                     <div class="card-body">
                         <div class="text-center">
                             <!-- Product name-->
-                            <h5 class="fw-bolder">{{ $item->nama }}</h5>
+                            <h5 class="fw-bolder">
+                                <a href="{{ route('produk.show', $item->id) }}">{{ $item->nama }}</a>
+                            </h5>
                             <!-- Product price-->
                             <p class="card-text">
                                 Rp. {{ $item->harga }}
                             </p>
                             <!-- Product stok-->
-                            Stok : {{ $item->stok }}
-                            <p>
-                                Deskripsi : {{ $item->product_detail}}
-                            </p>
+                            Stok: {{ $item->stok }}
+                            {{-- <p>
+                                Deskripsi: {{ $item->product_detail }}
+                            </p> --}}
                         </div>
                     </div>
                     <!-- Product actions-->
@@ -72,10 +76,10 @@
                 </div>
             </div>
             @endforeach
-            </div>
         </div>
     </div>
 </section>
+
 
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
