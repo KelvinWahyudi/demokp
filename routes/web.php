@@ -30,6 +30,8 @@ Route::get('/about', function () {
 
 Route::get("/produks", [produkController::class, "produk"])->name("produk");
 
+
+
 // Route::get("/pembayaran", [PaymentController::class, "payment"])->name("payment");
 
 Route::get('/login', function () {
@@ -47,7 +49,18 @@ Route::get("/transaksi", function() {
     return view('transaksi.index');
 });
 
-Route::get("/detailpembelian/{id}", [DetailPembelianController::class, "index"])->name('detailpembelian.index');
+
+
+// Route::prefix('detailpembelian')->group(function () {
+//     Route::get('/', [DetailPembelianController::class, 'index'])->name('detailpembelian.index');
+//     Route::get('/create', [DetailPembelianController::class, 'create'])->name('detailpembelian.create');
+//     Route::post('/store', [DetailPembelianController::class, 'store'])->name('detailpembelian.store');
+//     Route::get('/edit/{id}', [DetailPembelianController::class, 'edit'])->name('detailpembelian.edit');
+//     Route::post('/update/{id}', [DetailPembelianController::class, 'update'])->name('detailpembelian.update');
+//     Route::get('/delete/{id}', [DetailPembelianController::class, 'delete'])->name('detailpembelian.delete');
+// });
+
+Route::get("/detailpembelian/{id}", [DetailPembelianController::class, "index"])->name('detailpembelian.index')->middleware('auth');
 
 // Route::post("/detailpembelian/store/{id}", [detail_pembelianController::class, "store"])->name("detailpembelian.store");
 
@@ -57,11 +70,15 @@ Route::get("/detailpembelian/{id}", [DetailPembelianController::class, "index"])
 
 
 Route::get('/payments/{id}', [PaymentController::class, 'index'])->name('detailpembelian.index');
-Route::get('/pembayaran', [PaymentController::class, 'pembayaran_index'])->name('pembayaran.index');
+Route::get('/pembayaran', [PaymentController::class, 'pembayaran_index'])->name('pembayaran.index')->middleware('auth');
+Route::get('/detailpembelian/create', [DetailPembelianController::class, 'create'])->name('detailpembelian.create');
+
+
 
 // Route::get('/payments/create', [PaymentController::class, 'create'])->name('detailpembelian.create');
 Route::post('/payments/store/{id}', [PaymentController::class, 'store'])->name('detailpembelian.store');
-
+Route::get("/payments/edit/{id}", [PaymentController::class, "edit"])->name("edit");
+Route::put('/payments/{id}', [PaymentController::class, 'update'])->name('payment.update');
 Route::post('payments/store/{id}', [PaymentController::class, 'store'])->name('detailpembelian.detail');
 Route::get('/payments/{id}', [PaymentController::class, 'show'])->name('detailpembelian.show');
 
@@ -81,8 +98,8 @@ Route::get('/detail/{id}', [produkController::class, "show"])->name('produk.show
 
 //keranjang
 Route::get('/tes', [produkController::class, 'tes']);
-Route::get('cart', [produkController::class, 'cart'])->name('cart.index');
-Route::get('add-to-cart/{id}', [produkController::class, 'addToCart'])->name('add.to.cart');
+Route::get('cart', [produkController::class, 'cart'])->name('cart.index')->middleware('auth');
+Route::get('add-to-cart/{id}', [produkController::class, 'addToCart'])->name('add.to.cart')->middleware('auth');
 Route::patch('update-cart', [produkController::class, 'updateCart'])->name('update.cart');
 Route::delete('remove-from-cart', [produkController::class, 'remove'])->name('remove.from.cart');
 

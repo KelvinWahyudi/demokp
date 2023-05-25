@@ -12,4 +12,9 @@ class transaksi extends Model
     protected $fillable = [
         "id", "idCustomer", "tanggal"
     ];
+
+    public function detailPembelian()
+    {
+        return $this->hasMany(detail_pembelian::class, 'kdTransaksi', 'id');
+    }
 }

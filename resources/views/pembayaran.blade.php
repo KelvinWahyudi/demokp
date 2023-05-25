@@ -17,6 +17,7 @@
 
 <section class="py-5 mt-5">
     <div class="container">
+        
         <div class="row">
             <div class="col-md-12">
                 <h1>Payment Details</h1>
@@ -31,7 +32,13 @@
                             <th>Jenis Pembayaran</th>
                             <th>Status</th>
                             <th>Bukti Transfer</th>
-                            <th>Actions</th>
+                            <th>
+                                @php
+                                $emailLogin = auth()->user()->email;
+                            @endphp
+                             @if ($emailLogin == 'kelvin@admin.com' || $emailLogin == 'stephen@admin.com')
+                                Actions
+                                @endif</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -48,8 +55,8 @@
                                     <img src="{{ asset('storage/' . $payment->buktiTransfer) }}" alt="Bukti Transfer" width="100">
                                 </td>
                                 <td>
-                                    {{-- <a href="{{ route('payments.edit', $payment->id) }}" class="btn btn-primary">Edit</a>
-                                    <form action="{{ route('payments.destroy', $payment->id) }}" method="POST" style="display: inline">
+                                    <a href="{{ route('edit', $payment->id) }}" class="btn btn-primary">Edit</a>
+                                    {{-- <form action="{{ route('payments.destroy', $payment->id) }}" method="POST" style="display: inline">
                                         @csrf
                                         @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>

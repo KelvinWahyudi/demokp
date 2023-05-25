@@ -9,4 +9,6 @@ class detail_pembelian extends Model
 {
     // use HasFactory;
     protected $table = "detail_pembelian";
+
+    
 }

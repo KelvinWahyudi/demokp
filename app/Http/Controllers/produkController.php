@@ -203,13 +203,17 @@ class produkController extends Controller
         $transaksi->save();
 
         $total = 0;
+        $totalQuantity = 0;
         foreach (session('cart') as $id => $details) {
             $total += $details['price'] * $details['quantity'];
+            $totalQuantity += $details['quantity'];
+
             $payment = new Payment();
             $produk = Produk::where('nama', $details['name'])->first();
             $produk->decrement('stok', $details['quantity']);
             $kodeProduk = $produk->id;
             $detail_pembelian->Product_id = $kodeProduk;
+            $detail_pembelian->jml_pembelian = $totalQuantity;
             $detail_pembelian->kdTransaksi = $id2;
             $detail_pembelian->purchase_amount = $total;
             $detail_pembelian->save();

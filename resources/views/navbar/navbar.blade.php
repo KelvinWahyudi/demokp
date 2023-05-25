@@ -28,6 +28,9 @@
                 @endcan
                 </li>
                 <li class="nav-item">
+                    <a class="nav-link" href="/pembayaran"><b>Status Pemesanan</b></a>
+                </li>
+                <li class="nav-item">
                     <a class="nav-link" href="/about"><b>Tentang Kami</b></a>
                 </li>
             </ul>

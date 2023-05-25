@@ -1,7 +1,7 @@
 @extends('layouts.main')
 
 @section('container')
-    <div class="container  mb-5">
+    {{-- <div class="container  mb-5">
         <div class="row mt-5">
             <div class="col-md-6">
                 <form action="{{ url('payments/store/'.$transaksi->id) }}" method="post" enctype="multipart/form-data">
@@ -76,7 +76,43 @@
                 </button>
                 </form>
             </div>
-            
-        </div>
-    </div>
+        </div> --}}
+
+        <!-- detailpembelian/index.blade.php -->
+
+        <h1>Detail Pembelian</h1>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Product ID</th>
+                    <th>Jumlah Pembelian</th>
+                    <th>Amount</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($transaksi->detailPembelian as $detail)
+                    <tr>
+                        <td>{{ $detail->id }}</td>
+                        <td>{{ $detail->Product_id }}</td>
+                        <td>{{ $detail->jml_pembelian }}</td>
+                        <td>{{ $detail->purchase_amount }}</td>
+                        {{-- <td>
+                            <a href="{{ route('detailpembelian.edit', $detail->id) }}">Edit</a>
+                            <form action="{{ route('detailpembelian.delete', $detail->id) }}" method="POST" style="display: inline-block;">
+                                @csrf
+                                @method('DELETE')
+                                <button type="submit" class="btn btn-link text-danger" onclick="return confirm('Apakah Anda yakin ingin menghapus detail pembelian ini?')">Hapus</button>
+                            </form>
+                        </td> --}}
+                    </tr>
+                @endforeach
+            </tbody>
+        </table>
+
+{{-- <a href="{{ route('detailpembelian.create') }}">Add Detail Pembelian</a> --}}
+
+        
+    {{-- </div> --}}
 @endsection
