@@ -10,5 +10,9 @@ class detail_pembelian extends Model
     // use HasFactory;
     protected $table = "detail_pembelian";
 
+    public function produk()
+{
+    return $this->belongsTo(produk::class, 'Product_id');
+} 
     
 }

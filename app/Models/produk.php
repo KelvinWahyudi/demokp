@@ -11,6 +11,8 @@ class produk extends Model
     protected $table = "produk";
     protected $primaryKey = 'id';
 
+    protected $fillable = ['foto']; 
+    
     public function category()
     {
         return $this->belongsTo(category::class);

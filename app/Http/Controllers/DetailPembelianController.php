@@ -39,15 +39,18 @@ class DetailPembelianController extends Controller
         // Ambil data dari form input
         $id = $request->input('id');
         $kdTransaksi = $request->input('kdTransaksi');
-        $product_id = $request->input('product_id');
+        $product_id = $request->input('Product_id');
         $jml_pembelian = $request->input('jml_pembelian');
         $purchase_amount = $request->input('purchase_amount');
+
+  // Dapatkan objek produk berdasarkan ID
+  $product = produk::find($product_id);
 
         // Simpan data ke database
         $detailPembelian = new detail_pembelian();
         $detailPembelian->id = $id;
         $detailPembelian->kdTransaksi = $kdTransaksi;
-        $detailPembelian->product_id = $product_id;
+        $detailPembelian->product_id = $request->$product_id;
         $detailPembelian->jml_pembelian = $jml_pembelian;
         $detailPembelian->purchase_amount = $purchase_amount;
         $detailPembelian->save();
